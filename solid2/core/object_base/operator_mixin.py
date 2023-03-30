@@ -23,6 +23,29 @@ class OperatorMixin:
 
         return res
 
+    def _group_op(self, x, groupType):
+        """
+        This makes u = a|b identical to:
+        u = group()(a, b )
+        """
+        res = groupType()
+
+        #add self or all its children to res
+        if isinstance(self, groupType):
+            for c in self._children:
+                res.add(c)
+        else:
+            res.add(self)
+
+        #add x or all its children to res
+        if isinstance(x, groupType):
+            for c in x._children:
+                res.add(c)
+        else:
+            res.add(x)
+
+        return res
+
     def _difference_op(self, x, differenceType):
         """
         This makes u = a - b identical to:
@@ -64,8 +87,8 @@ class OperatorMixin:
         from ..builtins import union
         return self._union_op(x, union)
     def __or__(self, x):
-        from ..builtins import union
-        return self._union_op(x, union)
+        from ..builtins import group
+        return self._group_op(x, group)
     def __radd__(self, x):
         from ..builtins import union
         return self._union_op(x, union)

@@ -229,6 +229,14 @@ class union(OpenSCADObject):
     def __init__(self) -> None:
         super().__init__('union', {})
 
+class group(OpenSCADObject):
+    """
+    Creates a group of all its child nodes.
+    """
+
+    def __init__(self) -> None:
+        super().__init__('group', {})
+
 
 class intersection(OpenSCADObject):
     """

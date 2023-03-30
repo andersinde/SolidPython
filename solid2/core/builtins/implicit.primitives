@@ -7,6 +7,7 @@ module circle(r=default, $fn=default);
 module polygon(points, paths=default, r=default);
 
 module union(r=default);
+module group(r=default);
 module difference(r=default);
 module intersection(r=default);
 
