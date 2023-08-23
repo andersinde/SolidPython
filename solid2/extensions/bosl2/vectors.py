@@ -4,7 +4,7 @@ from pathlib import Path as _Path
 
 from .bosl2_base import Bosl2Base as _Bosl2Base
 
-_extra_scad_include(f"{_Path(__file__).parent.parent / '../libs/BOSL2/vectors.scad'}", use_not_include=False)
+_extra_scad_include(f"{_Path(__file__).parent.parent / 'bosl2/BOSL2/vectors.scad'}", use_not_include=False)
 
 class is_vector(_Bosl2Base):
     def __init__(self, v=None, length=None, zero=None, all_nonzero=None, eps=None, **kwargs):
@@ -53,6 +53,10 @@ class vector_angle(_Bosl2Base):
 class vector_axis(_Bosl2Base):
     def __init__(self, v1=None, v2=None, v3=None, **kwargs):
        super().__init__("vector_axis", {"v1" : v1, "v2" : v2, "v3" : v3, **kwargs})
+
+class vector_bisect(_Bosl2Base):
+    def __init__(self, v1=None, v2=None, **kwargs):
+       super().__init__("vector_bisect", {"v1" : v1, "v2" : v2, **kwargs})
 
 class pointlist_bounds(_Bosl2Base):
     def __init__(self, pts=None, **kwargs):

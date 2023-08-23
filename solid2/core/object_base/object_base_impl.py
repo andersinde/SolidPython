@@ -16,7 +16,7 @@ class RenderMixin:
         from ..scad_render import scad_render_to_file
         return scad_render_to_file(self, filename, outdir)
 
-    def save_as_stl(self, filename='', outdir=''):
+    def save_as_stl(self, filename=None):
         from ..scad_render import render_to_stl_file
         return render_to_stl_file(self, filename)
 
@@ -65,17 +65,13 @@ class BareOpenSCADObject(ObjectBase):
             -> translate(v = [1, 2, 3]) {children[0]; children[1]; ...};\n
         """
         from ..utils import indent
-        s = self._generate_scad_head()
-
-        if self._children:
-            s += " {\n"
-            for child in self._children:
-                s += indent(child._render())
-            s += "}"
+        renderedChildsList = [indent(child._render()) for child in self._children]
+        if renderedChildsList:
+            renderedChilds = f" {{\n{''.join(renderedChildsList)}}}\n"
         else:
-            s += ";"
+            renderedChilds = ";\n"
 
-        return s + "\n"
+        return self._generate_scad_head() + renderedChilds
 
     def _generate_scad_head(self):
         """

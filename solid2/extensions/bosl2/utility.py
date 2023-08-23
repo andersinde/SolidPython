@@ -4,7 +4,7 @@ from pathlib import Path as _Path
 
 from .bosl2_base import Bosl2Base as _Bosl2Base
 
-_extra_scad_include(f"{_Path(__file__).parent.parent / '../libs/BOSL2/utility.scad'}", use_not_include=False)
+_extra_scad_include(f"{_Path(__file__).parent.parent / 'bosl2/BOSL2/utility.scad'}", use_not_include=False)
 
 class typeof(_Bosl2Base):
     def __init__(self, x=None, **kwargs):
@@ -185,6 +185,10 @@ class req_children(_Bosl2Base):
 class no_module(_Bosl2Base):
     def __init__(self, **kwargs):
        super().__init__("no_module", {**kwargs})
+
+class deprecate(_Bosl2Base):
+    def __init__(self, new_name=None, **kwargs):
+       super().__init__("deprecate", {"new_name" : new_name, **kwargs})
 
 class assert_approx(_Bosl2Base):
     def __init__(self, got=None, expected=None, info=None, **kwargs):

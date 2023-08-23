@@ -41,6 +41,7 @@ def generateStub(scadFile, outputDir, use_not_include,
     def generateCallable(c):
         name = escape(c.name)
         paramNames = [escape(p.name) for p in c.parameters]
+        paramNames = list(dict.fromkeys(paramNames))
 
         paramStr = ", ".join(["self"] +
                              [f"{p}=None" for p in paramNames] +

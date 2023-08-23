@@ -4,7 +4,7 @@ from pathlib import Path as _Path
 
 from .bosl2_base import Bosl2Base as _Bosl2Base
 
-_extra_scad_include(f"{_Path(__file__).parent.parent / '../libs/BOSL2/comparisons.scad'}", use_not_include=False)
+_extra_scad_include(f"{_Path(__file__).parent.parent / 'bosl2/BOSL2/comparisons.scad'}", use_not_include=False)
 
 class approx(_Bosl2Base):
     def __init__(self, a=None, b=None, eps=None, **kwargs):
@@ -37,6 +37,10 @@ class all_nonnegative(_Bosl2Base):
 class all_equal(_Bosl2Base):
     def __init__(self, vec=None, eps=None, **kwargs):
        super().__init__("all_equal", {"vec" : vec, "eps" : eps, **kwargs})
+
+class are_ends_equal(_Bosl2Base):
+    def __init__(self, list=None, eps=None, **kwargs):
+       super().__init__("are_ends_equal", {"list" : list, "eps" : eps, **kwargs})
 
 class is_increasing(_Bosl2Base):
     def __init__(self, list=None, strict=None, **kwargs):
@@ -81,6 +85,22 @@ class deduplicate(_Bosl2Base):
 class deduplicate_indexed(_Bosl2Base):
     def __init__(self, list=None, indices=None, closed=None, eps=None, **kwargs):
        super().__init__("deduplicate_indexed", {"list" : list, "indices" : indices, "closed" : closed, "eps" : eps, **kwargs})
+
+class list_wrap(_Bosl2Base):
+    def __init__(self, list=None, eps=None, **kwargs):
+       super().__init__("list_wrap", {"list" : list, "eps" : eps, **kwargs})
+
+class cleanup_path(_Bosl2Base):
+    def __init__(self, list=None, eps=None, **kwargs):
+       super().__init__("cleanup_path", {"list" : list, "eps" : eps, **kwargs})
+
+class close_path(_Bosl2Base):
+    def __init__(self, list=None, eps=None, **kwargs):
+       super().__init__("close_path", {"list" : list, "eps" : eps, **kwargs})
+
+class list_unwrap(_Bosl2Base):
+    def __init__(self, list=None, eps=None, **kwargs):
+       super().__init__("list_unwrap", {"list" : list, "eps" : eps, **kwargs})
 
 class unique(_Bosl2Base):
     def __init__(self, list=None, **kwargs):

@@ -4,7 +4,7 @@ from pathlib import Path as _Path
 
 from .bosl2_base import Bosl2Base as _Bosl2Base
 
-_extra_scad_include(f"{_Path(__file__).parent.parent / '../libs/BOSL2/rounding.scad'}", use_not_include=False)
+_extra_scad_include(f"{_Path(__file__).parent.parent / 'bosl2/BOSL2/rounding.scad'}", use_not_include=False)
 
 class round_corners(_Bosl2Base):
     def __init__(self, path=None, method=None, radius=None, r=None, cut=None, joint=None, width=None, k=None, closed=None, verbose=None, **kwargs):
@@ -47,8 +47,8 @@ class _path_join(_Bosl2Base):
        super().__init__("_path_join", {"paths" : paths, "joint" : joint, "k" : k, "i" : i, "result" : result, "relocate" : relocate, "closed" : closed, **kwargs})
 
 class offset_stroke(_Bosl2Base):
-    def __init__(self, path=None, width=None, rounded=None, start=None, end=None, check_valid=None, quality=None, chamfer=None, closed=None, **kwargs):
-       super().__init__("offset_stroke", {"path" : path, "width" : width, "rounded" : rounded, "start" : start, "end" : end, "check_valid" : check_valid, "quality" : quality, "chamfer" : chamfer, "closed" : closed, **kwargs})
+    def __init__(self, path=None, width=None, rounded=None, start=None, end=None, check_valid=None, quality=None, chamfer=None, closed=None, atype=None, anchor=None, spin=None, cp=None, **kwargs):
+       super().__init__("offset_stroke", {"path" : path, "width" : width, "rounded" : rounded, "start" : start, "end" : end, "check_valid" : check_valid, "quality" : quality, "chamfer" : chamfer, "closed" : closed, "atype" : atype, "anchor" : anchor, "spin" : spin, "cp" : cp, **kwargs})
 
 class os_pointed(_Bosl2Base):
     def __init__(self, dist=None, loc=None, **kwargs):
@@ -207,8 +207,8 @@ class path_join(_Bosl2Base):
        super().__init__("path_join", {"paths" : paths, "joint" : joint, "k" : k, "relocate" : relocate, "closed" : closed, **kwargs})
 
 class offset_stroke(_Bosl2Base):
-    def __init__(self, path=None, width=None, rounded=None, start=None, end=None, check_valid=None, quality=None, chamfer=None, closed=None, **kwargs):
-       super().__init__("offset_stroke", {"path" : path, "width" : width, "rounded" : rounded, "start" : start, "end" : end, "check_valid" : check_valid, "quality" : quality, "chamfer" : chamfer, "closed" : closed, **kwargs})
+    def __init__(self, path=None, width=None, rounded=None, start=None, end=None, check_valid=None, quality=None, chamfer=None, closed=None, atype=None, anchor=None, spin=None, cp=None, **kwargs):
+       super().__init__("offset_stroke", {"path" : path, "width" : width, "rounded" : rounded, "start" : start, "end" : end, "check_valid" : check_valid, "quality" : quality, "chamfer" : chamfer, "closed" : closed, "atype" : atype, "anchor" : anchor, "spin" : spin, "cp" : cp, **kwargs})
 
 class offset_sweep(_Bosl2Base):
     def __init__(self, path=None, height=None, bottom=None, top=None, h=None, l=None, offset=None, r=None, steps=None, quality=None, check_valid=None, extra=None, cut=None, chamfer_width=None, chamfer_height=None, joint=None, k=None, angle=None, convexity=None, anchor=None, cp=None, spin=None, orient=None, atype=None, **kwargs):

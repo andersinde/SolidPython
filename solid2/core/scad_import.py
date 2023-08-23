@@ -36,7 +36,7 @@ def load_scad_file_into_dict(resolved_scad, dest_namespace_dict, use_not_include
     cached_dict = check_module_cache(resolved_scad, use_not_include)
     if cached_dict:
         dest_namespace_dict.update(cached_dict)
-        return dest_namespace_dict
+        return
 
     #otherwise parse the file
     new_namespace_dict = get_scad_file_as_dict(resolved_scad)
@@ -51,7 +51,7 @@ def load_scad_dir_into_dict(resolved_scad, dest_namespace_dict, use_not_include,
     #for each file in the dir
     for f in resolved_scad.iterdir():
         #skip non .scad files
-        if f.suffix != ".scad":
+        if f.is_file() and f.suffix != ".scad":
             continue
 
         #load it

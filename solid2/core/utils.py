@@ -56,22 +56,12 @@ def py2openscad(o):
     from .object_base import ObjectBase
     if type(o) == bool:
         return str(o).lower()
-    if type(o) == float:
-        return f"{o:.10f}"  # type: ignore
     if type(o) == str:
         return f'\"{o}\"'  # type: ignore
     if isinstance(o, ObjectBase):
-        #[:-1] removing traling ;\n
-        return o._render()[:-2]
+        return o._render()[:-2] #[:-1] removing traling ;\n
     if hasattr(o, "__iter__"):
-        s = "["
-        first = True
-        for i in o:  # type: ignore
-            if not first:
-                s += ", "
-            first = False
-            s += py2openscad(i)
-        s += "]"
-        return s
+        scadVals = [py2openscad(i) for i in o]
+        return f"[{', '.join(scadVals)}]"
     return str(o)
 
